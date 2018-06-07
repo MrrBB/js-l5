@@ -6,12 +6,37 @@
 </head>
 <body>
 	
-	<button>1</button>
-	<button>2</button>
-	<button>3</button>
-	<button>4</button>			
+		<ul id="dates">
+			<li><input type="date" class="date" id="date1" value="2018-06-10" onclick="do_it(this)"></li>
+				<br>
+			<li><input type="date" class="date" id="date2" value="2018-06-07" onclick="do_it(this)"></li>
+		</ul>
+	<br>
+
+	<script>
 	
-	<script src="js/script.js"></script>
+	let	dates = document.getElementById('dates'),
+		datesText = document.getElementById('datesText'),
+		firstDate = Date.parse(document.getElementById('date1').value),
+		secondDate = Date.parse(document.getElementById('date2').value);
+
+		reg = /\d{4}-\d{2}-\d{2}/;
+		k = 1/(1000*60*60*24);
+
+		function do_it(el){
+			if ( !reg.test(el.value) ) {alert('err');return}
+		var delta = secondDate - firstDate; 
+		var back = delta < 0;
+		var d = (Math.abs(delta)*k.toFixed(2));
+
+		datesText = "'<br> разницу между двумя датами: " + d + " дней.";
+
+		dates.children[2].innerHTML += datesText;
+	}
+	</script>
+
+
+	<!-- <script src="js/script.js"></script> -->
 	
 </body>
 </html>
